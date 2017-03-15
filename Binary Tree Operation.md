@@ -81,3 +81,27 @@ public:
 };
 ```
 
+## [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
+*  第二版，标准dfs，而且注意用res.size()判断什么时候结束
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        dfs(root, res, 0);
+        return res;
+    }
+public:
+    void dfs(TreeNode* root, vector<vector<int>>& res, int depth){
+        if(root == NULL) return;
+        if(res.size() == depth){
+            res.push_back(vector<int>());
+        }
+        
+        res[depth].push_back(root->val);
+        dfs(root->left, res, depth+1);
+        dfs(root->right, res, depth+1);
+    }
+};
+```

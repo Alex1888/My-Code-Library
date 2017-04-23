@@ -4,7 +4,7 @@
 * ```int isalpha ( int c )```: Check if character is alphabetic
 * ```size_t find_first_of (const string& str, size_t pos = 0) const;```
 * ```size_t find_last_of (const string& str, size_t pos = 0) const;``` 
-* ```int isspace ( int c )```: Check if character is a white-space
+
 
 >
 > 1. Searches the string for the first character that matches any of the characters specified in its arguments.
@@ -33,3 +33,4 @@ int main ()
 }
 
 ```
+* ```int isspace ( int c )```: Check if character is a white-space

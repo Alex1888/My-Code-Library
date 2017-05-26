@@ -35,4 +35,4 @@ int main ()
 ```
 * ```int isspace ( int c )```: Check if character is a white-space
 * ```int stoi (const string&  str, size_t* idx = 0, int base = 10)``` string convert to int;
-*  char convert to string: string(1, c)
+*  char convert to string: ```string(1, c)```

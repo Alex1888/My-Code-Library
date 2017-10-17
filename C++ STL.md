@@ -29,3 +29,5 @@ lower_bound at position 3
 upper_bound at position 6
 
 ```
+* ```template <class InputIterator1, class InputIterator2>
+  bool includes ( InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2 );``` 查看iter1里是否都包含iter2的元素， 例子：https://leetcode.com/problems/next-closest-time/description/

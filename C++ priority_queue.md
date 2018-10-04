@@ -11,8 +11,8 @@ STL里面容器默认用的是 vector. 比较方式默认用 operator< , 所以�
 class Solution {
 public:
     struct compareNum{
-        bool operator ()(pair<int, int>& a, pair<int, int>& b) { // return true if a ordered before b
-            return a.second < b.second;
+        bool operator ()(pair<int, int>& a, pair<int, int>& b) {
+            return a.second < b.second; //按照元素从大到小，与greater是等价的
         }
     };
     
@@ -41,7 +41,7 @@ public:
     }
 }; 
 ```
-* (比较函数)[https://blog.csdn.net/u014644714/article/details/68924863]: 如果a排在b的前面,返回true; 所以上面例子中实际是最小堆,值小的排在前面,相当于默认的greater
+* (比较函数)[https://blog.csdn.net/u014644714/article/details/68924863]: 实际是调用的!cmp,可以这样理解：当它返回true的时候a排在b的后面。所以上面例子中实际是最小堆,值小的排在前面,相当于greater
 * 如果要用到小顶堆，则一般要把模板的三个参数都带进去。STL里面定义了一个仿函数 greater<>，对于基本类型可以用这个仿函数声明小顶堆
 * 例子
 

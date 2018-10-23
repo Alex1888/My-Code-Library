@@ -20,11 +20,10 @@ public:
     } 
     
     int Find(int x){
-        // 因为所有的点都在包含在[0,n]范围你,并且初始时都是自己是自己的parent,所以能保证最后肯定能跳出循环
-        while(x != parent[x]){
-            x = parent[x];
+        if(x != parent[x]){
+            parent[x] = Find(parent[x]); //在find的过程中赋值parent,提高效率
         }
-        return x;
+        return root[x];
     }
 };
 

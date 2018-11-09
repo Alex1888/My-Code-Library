@@ -12,7 +12,7 @@ class Solution {
 public:
     struct compareNum{
         bool operator ()(pair<int, int>& a, pair<int, int>& b) {
-            return a.second < b.second; //按照元素从大到小，与greater是等价的
+            return a.second < b.second; //按照元素从小到大，与greater是等价的
         }
     };
     

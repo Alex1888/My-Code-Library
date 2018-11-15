@@ -1,3 +1,39 @@
+## 二叉树三种遍历非递归的总结
+https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45551/Preorder-Inorder-and-Postorder-Iteratively-Summarization
+* 但是后续遍历有点不好理解,可以用这个
+
+# [145. Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/#/description)
+*  非常值得研究的一道题
+*  首先是一种比较取巧的方法：先顺序存储root->right->left的顺序，然后在reverse输出
+*  这种方法要注意的是，stack 是left先入，right再入，所以出的时候才是right先出
+
+```C++
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+        if(root ==NULL) return res;
+        
+        stack<TreeNode*> s;
+        s.push(root);
+        TreeNode* p = root;
+        
+        while(!s.empty()){
+            p = s.top();
+            s.pop();
+            res.push_back(p->val); // 这里也可以用res.insert(res.begin(), p->val);，那后面就不需要reverse了
+            if(p->left) s.push(p->left);
+            if(p->right) s.push(p->right);
+        }
+        
+        reverse(res.begin(), res.end());
+        
+        return res;
+    }
+};
+```
+
+
 ## [144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/#/solutions)
 ```C++
 class Solution {

@@ -4,7 +4,7 @@
 * Type 为数据类型， Container 为保存数据的容器，Functional 为元素比较方式。
 Container 必须是用数组实现的容器，比如 vector, deque 但不能用 list.
 STL里面容器默认用的是 vector. 比较方式默认用 operator< , 所以如果你把后面俩个参数 缺省的话，优先队列就是大顶堆，队头元素最大。
-* C++默认是最大堆,即值大的排在前面
+* C++默认是最大堆,即值大的排在前面(默认为greater<int>)
 * 例子: https://leetcode.com/problems/top-k-frequent-elements/description/
 
 ```c++
@@ -12,7 +12,7 @@ class Solution {
 public:
     struct compareNum{
         bool operator ()(pair<int, int>& a, pair<int, int>& b) {
-            return a.second < b.second; //按照元素从小到大，与greater是等价的
+            return a.second < b.second; //按照a和b的second从大到小排列,大的排在前面,与默认的greater<int>是一致的
         }
     };
     

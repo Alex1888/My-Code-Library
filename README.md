@@ -13,4 +13,4 @@
 * [Python 相关](https://github.com/Alex1888/My-Code-Library/blob/master/Python%20%E7%9B%B8%E5%85%B3.md)
 * [UnionFind 并查集](https://github.com/Alex1888/My-Code-Library/blob/master/UnionFind.md)
 * [C++ priority_queue](https://github.com/Alex1888/My-Code-Library/blob/master/C%2B%2B%20priority_queue.md)
-* [Trie 树](https://github.com/Alex1888/My-Code-Library/tree/master)
+* [Trie 树](https://github.com/Alex1888/My-Code-Library/blob/master/Trie%20%E6%A0%91.md)

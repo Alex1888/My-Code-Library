@@ -1,67 +1,61 @@
-* 标准的Trie的模板, 参考[208. Implement Trie (Prefix Tree)](hhttps://leetcode.com/problems/implement-trie-prefix-tree/?tab=Description)
+* Trie树讲解: https://www.jianshu.com/p/6f81da81bd02
+* 标准的Trie的模板
 
 ```c++
-class TrieNode
-{
+class Trie {
 public:
-    TrieNode *next[26];
-    bool is_word;
-    
-    // Initialize your data structure here.
-    TrieNode(bool b = false)
-    {
-        memset(next, 0, sizeof(next));
-        is_word = b;
-    }
-};
-
-class Trie
-{
-    TrieNode *root;
-public:
-    Trie()
-    {
+    /** Initialize your data structure here. */
+    Trie() {
         root = new TrieNode();
     }
-
-    // Inserts a word into the trie.
-    void insert(string s)
-    {
-        TrieNode *p = root;
-        for(int i = 0; i < s.size(); ++ i)
-        {
-            if(p -> next[s[i] - 'a'] == NULL)
-                p -> next[s[i] - 'a'] = new TrieNode();
-            p = p -> next[s[i] - 'a'];
+    
+    /** Inserts a word into the trie. */
+    void insert(string word) {
+        TrieNode* p = root;
+        for(auto c : word){
+            if(p->children[c-'a'] == NULL){
+                p->children[c-'a'] = new TrieNode();
+            }
+            p = p->children[c-'a'];
         }
-        p -> is_word = true;
+        p->is_word = true;
     }
-
-    // Returns if the word is in the trie.
-    bool search(string key)
-    {
-        TrieNode *p = find(key);
-        return p != NULL && p -> is_word;
+    
+    /** Returns if the word is in the trie. */
+    bool search(string word) {
+        TrieNode* p = find(word);
+        return p != NULL && p->is_word;
     }
-
-    // Returns if there is any word in the trie
-    // that starts with the given prefix.
-    bool startsWith(string prefix)
-    {
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
         return find(prefix) != NULL;
     }
-
+    
 private:
-    TrieNode* find(string key)
-    {
-        TrieNode *p = root;
-        for(int i = 0; i < key.size() && p != NULL; ++ i)
-            p = p -> next[key[i] - 'a'];
+    struct TrieNode{
+        TrieNode() : is_word(false), children(26, NULL){}
+        bool is_word;
+        vector<TrieNode*> children;
+    };
+    
+    TrieNode* root;
+    
+    TrieNode* find(string& key){
+        TrieNode* p = root;
+        for(char c : key){
+            p = p->children[c-'a'];
+            if(p == NULL)
+                break;
+        }
         return p;
     }
 };
+
 ```
 
 ### 相关题目
 
 * [642. Design Search Autocomplete System](https://leetcode.com/problems/design-search-autocomplete-system/)
+* [208. Implement Trie (Prefix Tree)](hhttps://leetcode.com/problems/implement-trie-prefix-tree/?tab=Description)
+

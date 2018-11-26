@@ -57,5 +57,6 @@ private:
 ### 相关题目
 
 * [642. Design Search Autocomplete System](https://leetcode.com/problems/design-search-autocomplete-system/)
-* [208. Implement Trie (Prefix Tree)](hhttps://leetcode.com/problems/implement-trie-prefix-tree/?tab=Description)
+* [208. Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/?tab=Description)
+* [425. Word Squares](https://github.com/Alex1888/Leetcode/blob/master/CPP/425.%20Word%20Squares.md)
 

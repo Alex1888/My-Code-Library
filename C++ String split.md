@@ -3,11 +3,10 @@
 #include <sstream>
 #include <vector>
 //不能区分多个分隔符的情况
-	void split(const std::string &s, char delim, vector<string>& result) {
-		std::stringstream ss;
-		ss.str(s);
-		std::string item;
-		while (std::getline(ss, item, delim)) {
+	void split(const std::string &sentence, char delim, vector<string>& result) {
+		stringstream ss(sentence);
+		string item;
+		while (getline(ss, item, delim)) {
 			result.push_back(item);
 		}
 	}

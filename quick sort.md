@@ -34,10 +34,10 @@ int partition2(vector<int>& nums, int low, int high){
     int tmp = nums[low];
 
     while(low < high){
-        while(low < high && pivot <= nums[high]) high--;
+        while(low < high && pivot <= nums[high]) high--; //这里不一样
         nums[low] = nums[high];
 
-        while(low < high && pivot >= nums[low]) low++;
+        while(low < high && pivot >= nums[low]) low++; //这里不一样
         nums[high] = nums[low];
     }
 

@@ -1,3 +1,5 @@
+* 从大到小排序, 注意的是qsort里要有一个if来判断终止条件
+
 ```C++
 int partition(vector<int>& v, int low, int high) {
 	int pivot = v[low];

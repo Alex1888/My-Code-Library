@@ -32,6 +32,34 @@ public:
     }
 };
 ```
+* 第二种方法,和模板类似的
+
+```c++
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+        if(root == NULL) return res;
+        stack<TreeNode*> s;
+        TreeNode* p = root;
+        
+        while(p != NULL || !s.empty()){
+            if(p != NULL){
+                s.push(p);
+                res.insert(res.begin(), p->val); //如果用push_back的话.最后再reverse也可以
+                p = p->right;
+            }else{
+                p = s.top();
+                s.pop();
+                p = p->left;
+            }
+        }
+        
+        return res;
+    }
+};
+```
+
 
 
 ## [144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/#/solutions)

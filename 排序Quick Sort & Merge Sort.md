@@ -1,3 +1,4 @@
+## 快速排序
 * 从大到小排序, 每次: 找到第一个大于pivot的high,放在前面, 第一个小于pivot的low,放在pivot的后面
 * 注意的是qsort里要有一个if来判断终止条件
 
@@ -54,4 +55,43 @@ void quickSort(vector<int>& nums, int low, int high){
         quickSort(nums, pivot+1, high);
     }
 }
+```
+
+## Merge Sort
+* 分治算法的典型,先分成左右两边,然后再合并
+
+```c++
+void merge(vector<int>& nums, int low, int mid, int high){
+    vector<int> tmp(high-low+1, 0);
+    int i = low, j = mid+1, k = 0;
+
+    while(i<= mid && j<= high){
+        if(nums[i] <= nums[j])
+            tmp[k++] = nums[i++];
+        else
+            tmp[k++] = nums[j++];
+    }
+
+    while(i<=mid){
+        tmp[k++] = nums[i++];
+    }
+
+    while(j<=high){
+        tmp[k++] = nums[j++];
+    }
+
+    // 这里注意: 是从low到high的copy,不是整组都copy
+    for(k=0, i=low; i<=high; i++,k++)
+        nums[i] = tmp[k];
+}
+
+void MergeSort(vector<int>& nums, int low, int high){
+    if(low < high){
+        int mid = (low + high) / 2;
+        MergeSort(nums, low, mid);
+        MergeSort(nums, mid+1, high);
+        merge(nums, low, mid, high);
+    }
+}
+
 ```

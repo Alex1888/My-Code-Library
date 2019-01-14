@@ -1,0 +1,99 @@
+* 需要定义visited的
+* 例题:[787. Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/)
+* 因为每一层有可能遍历到上一层的重复的点
+
+```c++
+class Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
+        unordered_map<int, vector<pair<int, int>>> g;
+        for(auto f : flights){
+            g[f[0]].push_back(make_pair(f[1], f[2])); 
+        }
+        
+        int res = INT_MAX;
+        vector<bool> visited(n, false);
+        dfs(g, src, dst, K+1, 0, res, visited);
+        
+        return res == INT_MAX ?  -1 : res;
+    }
+    
+    void dfs(unordered_map<int, vector<pair<int, int>>>& g, int s, int d, 
+             int level, int cur, int&res, vector<bool>& visited){
+        if(s == d){
+            res = min(cur, res);
+            return;
+        }
+        
+        if(level == 0) return;
+        
+        visited[s] = true;
+        
+        for(auto p : g[s]){
+            int tmp = cur + p.second;
+            if(tmp > res) continue;
+            dfs(g, p.first, d, level-1, tmp, res, visited);
+        }
+        
+        visited[s] = false;
+    }
+};
+
+```
+
+* 不需要visited的.
+* 例如[Menu Combination](https://github.com/Alex1888/InterviewProblems/blob/master/Airbnb/Menu%20Combination%20Sum/main.cpp)
+* 因为每次从start开始,顺序遍历,不可能访问到已经访问过的上层的节点
+
+```
+/*
+ * 给一个菜单,和一个target金额,要求输出所有能点的不同的组合,要求用完所有钱
+Given a menu (list of items prices), find all possible combinations of items that sum a particular value K.
+(A variation of the typical 2sum/Nsum questions).
+Return the coins combination with the minimum number of coins. Time complexity O(MN), where M is
+the target value and N is the number of distinct coins. Space complexity O(M).
+ * 
+ * 这道题的dfs不需要从每个index开始,因为是从一个index开始,把所有以它开始的组合都找完,然后再从下一个index开始.
+ *
+ */
+class MenuCombination{
+public:
+    double precision = 0.000001;
+    vector<vector<double>> solve(vector<double>& menu, double target){
+        vector<vector<double>> res;
+        vector<double> cur;
+        sort(menu.begin(), menu.end());
+
+        double curPrice = 0;
+        dfs(menu, 0, res, cur, target, curPrice);
+        return res;
+    }
+
+    // 注意for循环一定要在dfs里.因为对于每个点,都要遍历和他所有相邻的点; 而设置start和排序,只是剪枝的一种方法
+    void dfs(vector<double>& menu, int start, vector<vector<double>>& res, vector<double>& cur, double target, double curPrice){
+        if(abs(curPrice - target) < precision){
+            res.push_back(cur);
+            return;
+        }
+
+        for(int i=start; i<menu.size(); i++){
+            // 这里注意要从i>start开始,而不是i>0;因为我们的目的就是避开start,让start能顺序进入cur;
+            // 说白了就是:在当前层,在与start相同的点中.只让start一个进入遍历序列; 而其他的点即使和start相同,也等到再下一层遍历
+            // 比如test2中 {10,1,2,7,6,1,5,1,1}; 第一次只让start=1的第一个1进入,然后它就会遍历出[1,1,1,5]这个结果
+            // 把这里注释掉,就可以允许不同位置的同样的值的结果同时存在,比如test2中会出现多个[1,1,1,5],里面的1代表不同的菜
+            if(i != start && menu[i] == menu[i-1]) {
+                continue;
+            }
+
+            // 当前值再加上menu[i]大于target,提早结束
+            if(curPrice + menu[i] - target > precision) {
+                break;
+            }
+
+            cur.push_back(menu[i]); //注意是加menu[i],而不是menu[start]
+            dfs(menu, i+1, res, cur, target, curPrice + menu[i]);
+            cur.pop_back();
+        }
+    }
+};
+```

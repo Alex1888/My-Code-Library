@@ -45,7 +45,7 @@ public:
 * 例如[Menu Combination](https://github.com/Alex1888/InterviewProblems/blob/master/Airbnb/Menu%20Combination%20Sum/main.cpp)
 * 因为每次从start开始,顺序遍历,不可能访问到已经访问过的上层的节点
 
-```
+```c++
 /*
  * 给一个菜单,和一个target金额,要求输出所有能点的不同的组合,要求用完所有钱
 Given a menu (list of items prices), find all possible combinations of items that sum a particular value K.

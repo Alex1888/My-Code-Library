@@ -1,3 +1,30 @@
+### 带返回值的情况
+* 例题 [690. Employee Importance](https://leetcode.com/problems/employee-importance/)
+* 实际上是遍历一条路径到头,因为没办法给出退出条件;
+
+```c++
+class Solution {
+public:
+    int getImportance(vector<Employee*> employees, int id) {
+        unordered_map<int, Employee*> map;
+        for(auto e : employees) map[e->id] = e;
+        return dfs(map, id);
+    }
+
+     int dfs(unordered_map<int, Employee*>& map, int id){
+        int res =0;
+        res += map[id]->importance;
+        for(auto i : map[id]->subordinates){
+            res += dfs(map, i);
+        }
+
+         return res;
+    }
+};
+
+```
+
+
 * 需要定义visited的
 * 例题:[787. Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/)
 * 因为每一层有可能遍历到上一层的重复的点; 而且visited是在for的外层更新,因为下一层遍历时的先决条件就是当前的s已经被访问过

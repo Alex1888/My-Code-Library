@@ -27,7 +27,7 @@ public:
 ### 标准DFS,不需要回溯的
 * https://github.com/Alex1888/Leetcode/blob/master/CPP/399.%20Evaluate%20Division.md
 
-* 需要定义visited的
+### 需要定义visited的
 * 例题:[787. Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/)
 * 因为每一层有可能遍历到上一层的重复的点; 而且visited是在for的外层更新,因为下一层遍历时的先决条件就是当前的s已经被访问过
 * 说白了这道题是在层与层之间做backtracing
@@ -71,7 +71,7 @@ public:
 
 ```
 
-* 不需要visited的.
+### 不需要visited的.
 * 例如[Menu Combination](https://github.com/Alex1888/InterviewProblems/blob/master/Airbnb/Menu%20Combination%20Sum/main.cpp)
 * 因为每次从start开始,顺序遍历,不可能访问到已经访问过的上层的节点
 * 而这道题是在for里面进行backtracing,是在每层的中间的每个元素之间进行回溯

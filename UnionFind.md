@@ -23,7 +23,7 @@ public:
         if(x != parent[x]){
             parent[x] = Find(parent[x]); //在find的过程中赋值parent,提高效率
         }
-        return root[x];
+        return parent[x];
     }
 };
 

@@ -159,3 +159,6 @@ public:
     }
 };
 ```
+
+* 典型例题
+* [254. Factor Combinations](https://leetcode.com/problems/factor-combinations/)

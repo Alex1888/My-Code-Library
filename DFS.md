@@ -23,6 +23,37 @@ public:
 };
 
 ```
+* 类似的[366. Find Leaves of Binary Tree](https://leetcode.com/problems/find-leaves-of-binary-tree/description/)
+* 能给出退出条件,实际上就退化成了普通递归
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> findLeaves(TreeNode* root) {
+        vector<vector<int>> res;
+        while(root){
+            vector<int> leaves;
+            root=remove(root, leaves);
+            res.push_back(leaves);
+        }
+        return res;
+    }
+    
+private:
+    TreeNode* remove(TreeNode* root, vector<int>& leaves){
+        if(root == NULL) return NULL;
+        if(root->left == NULL && root->right == NULL){
+            leaves.push_back(root->val);
+            return NULL;
+        }
+        
+        root->left = remove(root->left, leaves);
+        root->right = remove(root->right, leaves);
+        return root;
+    }
+};
+
+```
 
 ### 标准DFS,不需要回溯的
 * https://github.com/Alex1888/Leetcode/blob/master/CPP/399.%20Evaluate%20Division.md

@@ -162,3 +162,5 @@ public:
 
 * 典型例题
 * [254. Factor Combinations](https://leetcode.com/problems/factor-combinations/)
+* [46. Permutations](https://leetcode.com/problems/permutations/)
+* [47. Permutations II](https://leetcode.com/problems/permutations-ii/)

@@ -54,6 +54,7 @@ private:
 };
 
 ```
+* 带返回值的[698. Partition to K Equal Sum Subsets](https://leetcode.com/problems/partition-to-k-equal-sum-subsets/)
 
 ### 标准DFS,不需要回溯的
 * https://github.com/Alex1888/Leetcode/blob/master/CPP/399.%20Evaluate%20Division.md

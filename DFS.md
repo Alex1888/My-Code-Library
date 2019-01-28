@@ -59,6 +59,49 @@ private:
 ### 标准DFS,不需要回溯的
 * https://github.com/Alex1888/Leetcode/blob/master/CPP/399.%20Evaluate%20Division.md
 
+```c++
+class Solution {
+public:
+    vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries) {
+
+        for(int i =0; i<values.size(); i++){
+            auto equation = equations[i];
+            graph[equation.first][equation.second] = values[i];
+            graph[equation.second][equation.first] = 1.0 / values[i];
+        }
+            
+        vector<double> res;
+        for(auto query : queries){
+            if(query.first == query.second) { //这里可以不加，因为[a,a]这种case可以通过a-b-a找到
+                double tmp = graph.find(query.first) == graph.end() ? -1.0 : 1.0;
+                res.push_back(tmp);
+                continue;
+            }
+            unordered_set<string> visited;      
+            double t = dfs(query.first, query.second, visited);
+            res.push_back(t > 0 ? t : -1.0);
+        }    
+        return res;
+    }
+    
+    double dfs(string up, string down, unordered_set<string>& visited){
+        if(graph[up].count(down)) return graph[up][down];
+        
+        for(auto g : graph[up]){
+            if(visited.count(g.first)) continue;
+            visited.insert(g.first);
+            double t = dfs(g.first, down, visited);
+            if(t > 0.0) return t * g.second; 
+        }
+        return -1.0;
+    }
+        
+private:
+    unordered_map<string, unordered_map<string, double>> graph;
+};
+
+```
+
 ### 需要定义visited的
 * 例题:[787. Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/)
 * 因为每一层有可能遍历到上一层的重复的点; 而且visited是在for的外层更新,因为下一层遍历时的先决条件就是当前的s已经被访问过

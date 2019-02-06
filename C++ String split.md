@@ -29,4 +29,14 @@ vector<string> split(string& s, char delim) {
 
 	return res;
 }
+
+#include <boost/algorithm/string.hpp>
+* 或者用boost
+
+    vector<string> split(string s){
+        vector<string> res;
+        boost::split(res, s, boost::is_any_of(" "));
+        return res;
+    }
+
 ```
